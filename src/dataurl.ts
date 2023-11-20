@@ -78,6 +78,13 @@ export async function resourceToDataURL(
     // eslint-disable-next-line no-param-reassign
     resourceUrl += (/\?/.test(resourceUrl) ? '&' : '?') + new Date().getTime()
   }
+  
+  if (options.cacheDisable) {
+    options.fetchRequestInit = {
+      ...options.fetchRequestInit,
+      cache: 'no-cache',
+    }
+  }
 
   let dataURL: string
   try {
